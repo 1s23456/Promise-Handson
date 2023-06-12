@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+              <meta charset="UTF-8">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Promise Handson</title>
+              <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+              <div>Promise Async Await</div>
+
+              <!-- QUES1: -->
+    <h1>Q1: Write one example explaining how you can write a callback function.</h1>
+    <pre>
+ANS:-      function calculate(num1,num2){
+                            return num1*num2;
+              }
+              
+              function displayData(name,age){
+                            console.log(`${name} : age is ${age}`);
+              }
+              
+              displayData("Piple",calculate(10,20));
+    </pre>
+    <p>Explanation:- Callback function is that function which is passes inside another function as an argument.In this example,we define one function which has function name calculate and other function which has function name displayData and pass the first function inside second function as an argument that means first function depend on second function. </p>
+
+
+
+    <!-- //Ques2: -->
+    <h1>Q2: Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+              Explain callback hell:
+              Numbers
+              <br>
+              1
+              <br>
+              2
+              <br>
+              3
+              <br>
+              4
+              <br>
+              5
+              <br>
+              6
+              <br>
+              7</h1>
+              <pre>
+  ANS:-                          
+        setTimeout(() => {
+              console.log("1"); 
+             setTimeout(() => {
+                 console.log("2");
+                  setTimeout(() => {
+                         console.log("3");  
+                         setTimeout(() => {
+                             console.log("4");
+                             setTimeout(() => {
+                                        console.log("5");
+                                      setTimeout(() => {
+                                           console.log("6");
+                                           setTimeout(() => {
+                                                   console.log("7");
+                                           }, 7000);
+                                      },6000);     
+                             }, 5000);
+                         },4000);  
+               }, 3000);
+        }, 2000);
+   },1000);
+              </pre>
+<p>Explanation:- Callback hell is the pattern with multiple callbacks which makes code to read hard and debugg when dealing with asynchronous logics.In this question,we are telling javascript to call our each callback function after waiting for 1000ms.</p>
+
+              <!-- Q3:- -->
+              <h1>Q3: Write the promise function to print numbers from 1 to 7 ,in which 1 should be printed after 1 sec , 2 should be printed after 2 sec and so.. <br>
+              Numbers
+                 <br>
+                1
+              <br>2
+            <br>3
+          <br>4
+        <br>5
+      <br>6
+    <br>7</h1>
+
+    <pre>
+ANS: function printNumbersWithDelay() {
+                let number = 1;
+                function printNumberWithDelay(num) {
+                return new Promise((resolve) => {
+                setTimeout(() => {
+                console.log(num);
+                resolve();
+                }, num * 1000);
+                });
+                }
+                function printSequentially() {
+                if (number<= 7) { 
+                  printNumberWithDelay(number) .then(()=> {
+                    number++;
+                    printSequentially();
+                    });
+                    }
+                    }
+                    printSequentially();
+                    }
+                    printNumbersWithDelay();
+    </pre>
+
+
+
+              <!-- QUES4: -->
+              <h1>Q4:-Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed then it should go to reject the state and catch the error and print Promise Rejected.</h1>
+              <pre>
+                            
+let variable = true;
+let myPromise = new Promise((res,rej)=>{
+   if(variable==true){
+              res("Promise resolve Successfully....")
+   }
+   else{
+              rej(Error("Promise rejected...."))
+   }
+})
+
+myPromise
+.then((data)=>console.log(data))
+.catch((err)=>console.log(err))
+              </pre>
+<p>Explanation:- In this ,if variable is true then output come in the resolved part that is Promise resolve Successfully.But if variable is false then it go into the reject part that is it show error or Promised rejected show here.</p>
+
+              <!-- Q5: -->
+              <h1>Q5: Create examples to explain callback function.</h1>
+              <pre>
+                function calculate(num1,num2){
+                  return num1*num2;
+               }
+                function displayData(name,age){
+                  console.log(`${name} : age is ${age}`);
+               }
+    
+                displayData("Piple",calculate(10,20));
+              </pre>
+              <p>Explanation:- Callback function is that function which is passes inside another function as an argument.In this example,we define one function which has function name calculate and other function which has function name displayData and pass the first function inside second function as an argument that means first function depend on second function. </p>
+
+              <!-- Q6: -->
+              <h1>Q6: Create examples to explain callback hell function.</h1>
+              <pre>
+
+                setTimeout(() => {
+                  console.log("1");
+                       setTimeout(() => {
+                           console.log("2");
+                              setTimeout(() => {
+                                 console.log("3");
+                                    setTimeout(() => {
+                                       console.log("4")
+                                 },4000);
+                             }, 3000);
+                          }, 2000);
+                    }, 1000);
+                
+              </pre>
+              <p>Explanation:- Callback hell is the pattern with multiple callbacks which makes code to read hard and debugg when dealing with asynchronous logics.In this question,we are telling javascript to call our each callback function after waiting for 1000ms.Then,it print 1 in 1 second ,2 in 2 second ,3 in 3 sec and 4 in 4 seconds...</p>
+             
+
+              <!-- Q7: -->
+              <h1>Q7: Create examples to explain promises function.</h1>
+              <pre>
+                function getUserData() {
+                  return new Promise(function(resolve, reject) {
+                  setTimeout(function() {
+                  const userId = 123;
+                  resolve(userId);
+                  }, 2000);
+                  });
+                  }
+                  function fetchUserDetails(userId) {
+                  return new Promise(function(resolve, reject) {
+                  setTimeout(function() {
+                  const userDetails = { name: "Alice", age: 25 };
+                  resolve(userDetails);
+                  }, 2000);
+                  });
+                  }
+
+              </pre>
+
+              <!-- Q8: -->
+              <h1>Q8: Create examples to explain async await function.</h1>
+              <pre>
+
+                function promiseChain(alpha,timeout){
+                  return new Promise((res,rej)=>{
+                    setTimeout(() => {
+                      console.log(alpha);
+                      res("This promise is resolved....")
+                    }, timeout);
+                  })
+                }
+                
+                async function visible(){
+                  await promiseChain("A",2000)
+                  await promiseChain("E",5000)
+                  await promiseChain("I",3000)
+                  await promiseChain("O",1000)
+                  await promiseChain("U",4000)
+                }
+                visible()
+                
+              </pre>
+              <p>Explanation:-The await keyword can only be used inside an async function.The await keyword makes the function pause the execution and wait for a resolved promise</p>
+
+              <!-- Q9: -->
+              <h1>Q9: Create examples to explain promise .all function</h1>
+              <pre>
+                function Abc(){
+                  return new Promise((res,rej)=>{
+                    if(20 % 2==0){
+                      res("this is even number")
+                    }
+                    else{
+                      rej("this is an odd number")
+                    }
+                  })
+                }
+                
+                const promiseVar = new Promise((res,rej)=>{
+                  if(true){
+                    res("HI EA23 !!!")
+                  }
+                  else{
+                    rej("Sorry!!")
+                  }
+                })
+                
+                Promise.all([Abc(),promiseVar])
+                .then((data)=>console.log(data))
+                .catch((err)=>console.log(err))
+                
+              </pre>
+              <p>Explanation:- The promise.all method is useful for aggregating the results of multiple promises. It is typically used when there are multiple related asynchronous tasks that the overall code relies on to work successfully — all of whom we want to fulfill before the code execution continues.In this question,in the first function having function name Abc the condition is fullfilled then it come into the resolved part.That is, this is an even number.And in the secnd promise,same conditon as above..After this, promise.all is used to here to make individual resolved output in the array form...
+              </p>
+              <script type="text/javascript" src="./style.js"></script>
+              
+</body>
+</html>

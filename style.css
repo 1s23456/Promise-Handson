@@ -1,0 +1,30 @@
+h1{
+              color: red;
+}
+
+
+body{
+              background-color: bisque;
+}
+
+div{
+              color: brown;
+              background-color: aqua;
+              text-align: center;
+              height: 20px;
+              font-size: 30px;
+              margin: 20px;
+              padding: 20px;
+              font-family: Georgia, 'Times New Roman', Times, serif;
+              font-style: italic;
+}
+
+pre{
+              font-size: 20px;
+              color: blue;
+}
+
+p{
+              color: rgba(52, 103, 171, 0.782);
+              font-size: 20px;
+}
